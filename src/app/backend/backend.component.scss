@@ -1,0 +1,33 @@
+.main-container {
+    background-color: #FFF;
+    margin-left: 10%;
+    width: 500px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: right;
+    position: absolute; 
+    right: 0;
+  }
+
+.main-container button {
+    flex: 1;
+    order: 3;
+    margin-right: 10%; 
+  }
+
+.main-container span {
+    flex: 2;
+    order: 1;
+    margin-right: 0%; 
+    margin-left: 0%;
+    //flex-grow: 0; flex-shrink: 0; flex-basis: 50%;
+}
+
+.main-container input {
+    flex: 2;
+    order: 2;
+    margin-right: 10%; 
+    margin-left: 0%; 
+}

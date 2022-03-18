@@ -22,6 +22,7 @@
     "@angular/router": "~13.2.0",
     "core-js": "^3.21.1",
     "hammerjs": "^2.0.8",
+    "package.json": "^2.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "web-animations-js": "^2.3.2",

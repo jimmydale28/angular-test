@@ -1,7 +1,7 @@
 <!--<p>cdk-form-drag works!</p>-->
 <div class="main-container">
   <!--Source Form-->
-  <form class="source-form" [formGroup]="sourceForm">
+  <form class="source-form" [formGroup]="this.sourceMap['Form']">
     <div class="form-header">
       <h2>Source</h2>
     </div>
@@ -9,11 +9,11 @@
         cdkDropList
         id = 'source'
         #sourceList="cdkDropList"
-        [cdkDropListData]="sourceFormItemValues"
+        [cdkDropListData]="this.sourceMap['FormItemValues']"
         [cdkDropListConnectedTo]="[mappedList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of sourceFormItemValues" cdkDrag #elem="cdkDrag">
+        <div class="example-box" *ngFor="let item of this.sourceMap['FormItemValues']" cdkDrag #elem="cdkDrag">
           <span cdkDragHandle>
             {{item}}
           </span>
@@ -21,77 +21,41 @@
       </div>
   </form>
 
-
   <!--Mapped Form-->
-  <form class="mapping-form" [formGroup]="mappedForm">
+  <form class="mapping-form" [formGroup]="this.mappedMap['Form']">
     <h2>Mapping</h2>
     <div
         cdkDropList
         id = 'mapped'
         #mappedList="cdkDropList"
-        [cdkDropListData]=" mappedFormItemValues"
+        [cdkDropListData]="this.mappedMap['FormItemValues']"
         [cdkDropListConnectedTo]="[sourceList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of mappedFormItemValues;
+        <div class="example-box" *ngFor="let item of this.mappedMap['FormItemValues'];
               let i = index" cdkDrag #elem="cdkDrag">
           <div class="mapping-item-container">
-              <div class="mapped-item" cdkDragHandle>
-                <span>{{item}}</span>
-              </div>
-              <div class="new-item-input">
-                <input [id]="item" class="input-box" type="text" value="{{mappedFormItemNotes[i]}}">
-              </div>
+            <div class="mapping-container-desc">
+              <span cdkDragHandle>
+                {{item}}
+              </span>
+              <button class="save-button" (click)="saveState(item, i)">Save</button>
+            </div>
+            <div class="mapping-inputs">
+              <span>Item Alias:</span>
+              <input id="{{ item + '_alias' }}" class="input-box" type="text" value="{{ this.mappedMap['FormItemAlias'][i] }}">
+              <span>Where Clause:</span>
+              <input id="{{ item + '_where' }}" class="input-box" type="text" value="{{ this.mappedMap['FormItemWhere'][i] }}">
+              <span>Case Statment:</span>
+              <input id="{{ item + '_case' }}" class="input-box" type="text" value="{{ this.mappedMap['FormItemCase'][i] }}">
+            </div>
           </div>
-          <!--
-          <span cdkDragHandle>
-            {{item}}
-          </span>
-          <span class="span-class" cdkDragHandle>
-            {{item}}
-          </span>
-          <div class="mapping-box">
-            <p>Where Clause</p>
-            <input [id]="item" class="input-box" type="text" value="{{mappedFormItemNotes[i]}}">
-        </div>
-        <div>
-          <button class="save-button" (click)="addNote(item, i)">Save</button>
-        </div>
-        -->
         </div>
       </div>
   </form>
 
 </div>
 
-<button class="button" (click)="logger()">Execute</button>
-
 <div style="position: fixed; bottom: 0px;">
-  {{ mappedForm.value | json}}
+  {{ this.mappedMap['Form'].value | json}}
 </div>
-
-
-<!--
-<form [formGroup]="sourceForm">
-	<input formControlName="title" />
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div [id]="i" class="example-box" *ngFor="let item of formItems.controls; let i=index" (click)="logger()"
-    cdkDrag #elem="cdkDrag" (mouseenter)="enter(i)">
-    <span cdkDragHandle>
-      {{formItemValues[i]}}
-    </span>
-    <div>
-    <input type="text">
-    <select>
-      <option [hidden]="elem.moved">{{activeNote}}</option>
-      <option>foo</option>
-      <option>bar</option>
-      <option>baz</option>
-      <option>quux</option>
-    </select>
-    </div>
-      </div>
-</div>
-
-</form>
--->

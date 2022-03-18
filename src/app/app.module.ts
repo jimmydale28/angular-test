@@ -12,13 +12,15 @@ import { DragndropComponent } from './dragndrop/dragndrop.component';
 import { CdkFormDragComponent } from './cdk-form-drag/cdk-form-drag.component';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { BackendComponent } from './backend/backend.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DragndropComponent,
-    CdkFormDragComponent
+    CdkFormDragComponent,
+    BackendComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
   ],
   exports: [
   ],
-  providers: [],
+  providers: [BackendComponent],
   bootstrap: [AppComponent],
   entryComponents: [CdkFormDragComponent]
 })
